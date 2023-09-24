@@ -24,11 +24,11 @@ class DotBig extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: 23.w, // Adjust the size of the dot as needed
-      height: 23.h,
+      width: 19.w, // Adjust the size of the dot as needed
+      height: 20.h,
       decoration: BoxDecoration(
         border: Border.all(
-            width: 2.w,
+            width: 1.5.w,
             color: AppTheme.shadedPrimaryColor), // Adjust the color as needed
         shape: BoxShape.circle,
       ),

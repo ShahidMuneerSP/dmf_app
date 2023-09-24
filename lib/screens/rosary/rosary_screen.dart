@@ -31,7 +31,10 @@ class _RosaryScreenState extends State<RosaryScreen> {
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              const AppBarWidget(title: 'Pray for manipur'),
+              const Padding(
+                padding: EdgeInsets.all(8.0),
+                child: AppBarWidget(title: 'Pray for manipur'),
+              ),
               Container(
                 width: size.width / 1.39.w, // Adjust the size as needed
                 height: size.height / 2.3.h,
@@ -55,58 +58,72 @@ class _RosaryScreenState extends State<RosaryScreen> {
                               SizedBox(
                                 height: 25.h,
                               ),
-                              Text(
-                                "Count: ${controller.currentCount}",
-                                style: TextStyle(
-                                    color: Colors.white,
-                                    fontSize: 16.sp,
-                                    fontWeight: FontWeight.w900),
-                              ),
-                              SizedBox(
-                                height: 25.h,
-                              ),
-                              ButtonWidget(
-                                  onPressed: () {
-                                    showDialog(
-                                        context: context,
-                                        builder: (BuildContext ctx) {
-                                          return AlertDialog(
-                                            content: const Text(
-                                                'Do you want to reset?'),
-                                            actions: [
-                                              TextButton(
-                                                  onPressed: () {
-                                                    controller.editCount();
-                                                    controller
-                                                            .smallCircleColors =
-                                                        List.filled(53,
-                                                            Colors.white);
-                                                    controller.bigCircleColors =
-                                                        List.filled(5,
-                                                            Colors.transparent);
-                                                    Navigator.of(context).pop();
-                                                  },
-                                                  child: Text(
-                                                    'Yes',
-                                                    style: TextStyle(
-                                                        color: AppTheme
-                                                            .splashColor),
-                                                  )),
-                                              TextButton(
-                                                  onPressed: () {
-                                                    Navigator.of(context).pop();
-                                                  },
-                                                  child: Text(
-                                                    'No',
-                                                    style: TextStyle(
-                                                        color: AppTheme
-                                                            .splashColor),
-                                                  ))
-                                            ],
-                                          );
-                                        });
-                                  },
-                                  title: 'Reset Count')
+
+                              controller.currentCount != 4 &&
+                                      controller.currentCount != 15 &&
+                                      controller.currentCount != 26 &&
+                                      controller.currentCount != 37 &&
+                                      controller.currentCount != 48 &&
+                                      controller.currentCount != 59
+                                  ? Text(
+                                      "Count: ${controller.currentCount}",
+                                      style: TextStyle(
+                                          color: Colors.white,
+                                          fontSize: 16.sp,
+                                          fontWeight: FontWeight.w900),
+                                    )
+                                  : Text(
+                                      "Count: ${controller.currentCount - 1}",
+                                      style: TextStyle(
+                                          color: Colors.white,
+                                          fontSize: 16.sp,
+                                          fontWeight: FontWeight.w900),
+                                    )
+                              // SizedBox(
+                              //   height: 25.h,
+                              // ),
+                              // ButtonWidget(
+                              //     onPressed: () {
+                              //       showDialog(
+                              //           context: context,
+                              //           builder: (BuildContext ctx) {
+                              //             return AlertDialog(
+                              //               content: const Text(
+                              //                   'Do you want to reset?'),
+                              //               actions: [
+                              //                 TextButton(
+                              //                     onPressed: () {
+                              //                       controller.editCount();
+                              //                       controller
+                              //                               .smallCircleColors =
+                              //                           List.filled(53,
+                              //                               Colors.white);
+                              //                       controller.bigCircleColors =
+                              //                           List.filled(5,
+                              //                               Colors.transparent);
+                              //                       Navigator.of(context).pop();
+                              //                     },
+                              //                     child: Text(
+                              //                       'Yes',
+                              //                       style: TextStyle(
+                              //                           color: AppTheme
+                              //                               .splashColor),
+                              //                     )),
+                              //                 TextButton(
+                              //                     onPressed: () {
+                              //                       Navigator.of(context).pop();
+                              //                     },
+                              //                     child: Text(
+                              //                       'No',
+                              //                       style: TextStyle(
+                              //                           color: AppTheme
+                              //                               .splashColor),
+                              //                     ))
+                              //               ],
+                              //             );
+                              //           });
+                              //     },
+                              //     title: 'Reset Count')
                             ],
                           ),
                         ),
@@ -127,44 +144,47 @@ class _RosaryScreenState extends State<RosaryScreen> {
               // SizedBox(
               //   height: 2.h,
               // ),
-              // const DotBig(),
-              // SizedBox(
-              //   height: 2.h,
-              // ),
-              // SvgPicture.asset(
-              //   'assets/christ_on_the_cross.svg',
-              //   height: 45.0.h,
-              //   width: 60.0.w,
-              //   color: Colors.white,
-              // ),
+
+              SizedBox(
+                height: 75.h,
+              ),
+              const DotBig(),
+
+              SvgPicture.asset(
+                'assets/christ_on_the_cross.svg',
+                height: 45.0.h,
+                width: 60.0.w,
+                color: Colors.white,
+              ),
               // SizedBox(
               //   height: 50.h,
               // ),
-              // Container(
-              //   padding: EdgeInsets.symmetric(horizontal: 20.w),
-              //   width: ScreenUtil()
-              //       .setWidth(size.width), // Adjust the desired width
-              //   child: SingleChildScrollView(
-              //     physics: const BouncingScrollPhysics(),
-              //     child: Center(
-              //       // ignore: deprecated_member_use
-              //       child: TypewriterAnimatedTextKit(
-              //         text: const [
-              //           'Our Father',
-              //           'Our Father,who art in heaven hallowed be thy name; thy kingdom come; thy will be done on earth as it is in heaven. Give us this day our daily bread and forgive us our trespasses as we forgive those who trespass against us; and lead us not into temptation, but deliver us from evil. Amen.'
-              //         ],
-              //         textStyle: TextStyle(
-              //           color: Colors.white,
-              //           fontSize: 16.sp,
-              //           fontWeight: FontWeight.bold,
-              //         ),
-              //         speed: const Duration(milliseconds: 300),
-              //         totalRepeatCount: 1,
-              //         isRepeatingAnimation: false,
-              //       ),
-              //     ),
-              //   ),
-              // ),
+
+              Container(
+                padding: EdgeInsets.symmetric(horizontal: 20.w),
+                width: ScreenUtil()
+                    .setWidth(size.width), // Adjust the desired width
+                child: SingleChildScrollView(
+                  physics: const BouncingScrollPhysics(),
+                  child: Center(
+                    // ignore: deprecated_member_use
+                    child: TypewriterAnimatedTextKit(
+                      text: const [
+                        'Our Father',
+                        'Our Father,who art in heaven hallowed be thy name; thy kingdom come; thy will be done on earth as it is in heaven. Give us this day our daily bread and forgive us our trespasses as we forgive those who trespass against us; and lead us not into temptation, but deliver us from evil. Amen.'
+                      ],
+                      textStyle: TextStyle(
+                        color: Colors.white,
+                        fontSize: 16.sp,
+                        fontWeight: FontWeight.bold,
+                      ),
+                      speed: const Duration(milliseconds: 300),
+                      totalRepeatCount: 1,
+                      isRepeatingAnimation: false,
+                    ),
+                  ),
+                ),
+              ),
             ],
           ),
         ),
